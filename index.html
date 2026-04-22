@@ -147,15 +147,11 @@ async function loadMeal() {
     const res = await fetch(url);
     const data = await res.json();
 
-    const meal = data.mealServiceDietInfo?.[1]?.row?.[0]?.DDISH_NM;
+    const meal = data.mealServiceDietInfo[1].row[0].DDISH_NM;
 
-    if (meal) {
-      meal.split("<br/>").forEach(food => {
-        html += `<p>${food}</p>`;
-      });
-    } else {
-      html += "<p>급식 없음</p>";
-    }
+    meal.split("<br/>").forEach(food => {
+      html += `<p>${food}</p>`;
+    });
 
   } catch {
     html += "<p>불러오기 실패</p>";
